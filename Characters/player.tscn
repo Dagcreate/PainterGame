@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://6djwxt7ft8fm"]
+
+[ext_resource type="Texture2D" uid="uid://l1bey4kmp6hc" path="res://Art/BlueWizard/char_idle_spritesheet.png" id="1_7pstx"]
+[ext_resource type="Script" path="res://Characters/player.gd" id="1_ld0y5"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_um4mm"]
+radius = 65.0
+height = 230.0
+
+[sub_resource type="Animation" id="Animation_ekpe0"]
+resource_name = "idle_animation"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cytaf"]
+_data = {
+"idle_animation": SubResource("Animation_ekpe0")
+}
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_ld0y5")
+SPEED = 700.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_7pstx")
+hframes = 19
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 33)
+shape = SubResource("CapsuleShape2D_um4mm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cytaf")
+}
